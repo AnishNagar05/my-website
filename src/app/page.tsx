@@ -7,111 +7,157 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Linkedin, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+const popIn = {
+  hidden: { opacity: 0, scale: 0.92, y: 24 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+  },
+};
+
+const experiences = [
+  {
+    title: "Hardware",
+    href: "/hardware",
+    items: [
+      "Raytheon – FPGA Engineering Intern",
+      "Texas Instruments – Hardware Intern",
+      "Haylon Technologies – Embedded Intern",
+      "Jetpack Joyride (FPGA Game)",
+      "Illini Formula Electric",
+      "Autonomous Maze Navigating Robot",
+      "FPGA 16-bit RISC Microprocessor",
+    ],
+  },
+  {
+    title: "Software",
+    href: "/software",
+    items: [
+      "Haylon Technologies – Embedded Software",
+      "Nand2Tetris Capstone Project",
+      "SystemVerilog Automation Toolkit",
+      "Found It! @Illinois",
+    ],
+  },
+  {
+    title: "Consulting",
+    href: "/consulting",
+    items: [
+      "CUBE Consulting – President",
+      "Junior Enterprise USA Summit Host",
+      "CUBE Consulting – Project Manager",
+    ],
+  },
+];
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#EAF6E5] text-[#0C1708] px-6 py-12 scroll-smooth">
-      <nav className="flex justify-between items-center max-w-5xl mx-auto mb-12">
+    <main className="min-h-screen bg-[#EAF6E5] text-[#0C1708] px-6 py-10 scroll-smooth">
+      <nav className="flex justify-between items-center max-w-6xl mx-auto mb-10">
         <h1 className="text-2xl font-bold">Anish Nagar</h1>
-        <div className="space-x-4">
+        <div className="flex items-center gap-4 text-sm font-medium sm:text-base">
           <a href="#about" className="hover:text-[#8DC89A]">About</a>
           <a href="#experience" className="hover:text-[#8DC89A]">Experience</a>
-         
-          <a href="#contact" className="hover:text-[#8DC89A]">Contact</a>
         </div>
       </nav>
 
-      <section className="max-w-6xl mx-auto grid gap-12">
-        {/* Profile Header */}
+      <section className="max-w-6xl mx-auto grid gap-8">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 items-center gap-10"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          id="about"
+          className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] items-stretch gap-6"
+          initial="hidden"
+          animate="visible"
+          transition={{ staggerChildren: 0.16 }}
         >
-          <div className="text-center md:text-left">
-            <div className="w-40 h-40 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-[#8DC89A]">
-              <Image src="/profile.jpeg" alt="Profile picture of Anish Nagar" width={160} height={160} />
+          <motion.div
+            variants={popIn}
+            transition={{ type: "spring", stiffness: 230, damping: 20 }}
+            className="flex flex-col items-center justify-center rounded-lg bg-[#0C1708] px-6 py-8 text-center text-[#EAF6E5] shadow-lg shadow-[#0C1708]/10 sm:px-8"
+          >
+            <div className="relative h-44 w-44 overflow-hidden rounded-full border-4 border-[#8DC89A] shadow-md shadow-[#0C1708]/25">
+              <Image
+                src="/profile.jpeg"
+                alt="Profile picture of Anish Nagar"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
-            <p className="mt-4 text-xl">University of Illinois Urbana-Champaign</p>
-            <p className="text-lg">B.S. in Computer Engineering</p>
-            <p className="text-md italic">Areas of Focus: Computer Architecture, Digital Design, AI in Hardware</p>
-            <a href="https://www.linkedin.com/in/anishnagar05/" target="_blank" className="inline-flex items-center mt-4 text-[#0C1708] hover:text-[#8DC89A] hover:underline">
-              <Linkedin className="w-5 h-5 mr-1" /> LinkedIn
-            </a>
-          </div>
-
-          <Card className="bg-[#8DC89A] border-none">
-            <CardContent className="p-6">
-              <h3 className="text-3xl font-semibold text-[#0C1708] mb-4">About Me</h3>
-              <p>
-                I’m a hardware engineer who approaches technology with both precision and perspective. While I thrive in low-level programming and digital system design—building everything from interactive games to power electronics—I also view every technical challenge through a business lens. I believe that great engineering doesn’t stop at functionality; it must create meaningful value for the end user. Beyond my technical passion, I’m deeply committed to personal growth. I intentionally seek out uncomfortable and unfamiliar situations because I believe that’s where real development happens. Whether I’m scaling a startup or exploring new domains through consulting, I’m always learning, evolving, and looking for the next challenge to stretch my thinking.
+            <div className="mt-6 grid gap-2">
+              <h2 className="text-3xl font-bold">Anish Nagar</h2>
+              <p className="text-lg font-semibold">University of Illinois Urbana-Champaign</p>
+              <p>B.S. in Computer Engineering</p>
+              <p className="italic text-[#EAF6E5]/85">
+                Areas of Focus: Computer Architecture, Digital Design, AI in Hardware
               </p>
-            </CardContent>
-          </Card>
+            </div>
+            <a
+              href="https://www.linkedin.com/in/anishnagar05/"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-md bg-[#8DC89A] px-4 py-2 text-sm font-semibold text-[#0C1708] transition hover:bg-[#EAF6E5]"
+            >
+              <Linkedin className="h-4 w-4" /> LinkedIn
+            </a>
+          </motion.div>
+
+          <motion.div
+            variants={popIn}
+            transition={{ type: "spring", stiffness: 230, damping: 20 }}
+          >
+            <Card className="h-full border-none bg-[#8DC89A] py-0 shadow-lg shadow-[#0C1708]/10">
+              <CardContent className="flex h-full flex-col justify-center p-8">
+                <h3 className="mb-5 text-3xl font-bold text-[#0C1708]">About Me</h3>
+                <p className="text-base leading-7 sm:text-lg">
+                  Hi! I’m a university student deeply passionate about computer architecture and designing better hardware systems. I thrive in FPGA/ASIC design and low-level programming, while continuously expanding my knowledge in areas like artificial intelligence and machine learning. I enjoy solving complex technical problems, but I’m equally interested in thinking about systems holistically—from the underlying architecture all the way to the end-user experience and product impact.
+
+I believe great engineering goes beyond functionality; it should create meaningful value for the people using it. That mindset has made me highly product- and business-oriented, always thinking about how technology, strategy, and user needs connect together.
+
+I’m also deeply committed to personal growth. I intentionally seek out uncomfortable and unfamiliar situations because I believe that’s where the greatest development happens. Whether I’m helping scale a startup, exploring new technical domains, or consulting for other companies, I’m always learning, evolving, and pushing myself toward the next challenge.
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
         </motion.div>
 
-        {/* Experience Cards Preview */}
         <motion.section
           id="experience"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 gap-6 md:grid-cols-3"
+          initial="hidden"
+          animate="visible"
+          transition={{ delayChildren: 0.55, staggerChildren: 0.16 }}
         >
-          {/* Hardware */}
-          <Card className="bg-[#8DC89A] border-none max-h-[500px] overflow-y-auto">
-            <CardContent className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-semibold text-[#0C1708]">Hardware</h3>
-                <Link href="/hardware">
-                  <ArrowUpRight className="text-[#0C1708] hover:text-[#EAF6E5] w-5 h-5" />
-                </Link>
-              </div>
-              <ul className="list-disc list-inside space-y-2 text-sm">
-                <li>Texas Instruments – Hardware Intern</li>
-                <li>Haylon Technologies – Embedded Intern</li>
-                <li>Jetpack Joyride (FPGA Game)</li>
-                <li>Illini Formula Electric</li>
-                <li>Autonomous Maze Navigating Robot</li>
-                <li>FPGA 16-bit RISC Microprocessor</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          {/* Consulting */}
-          <Card className="bg-[#8DC89A] border-none max-h-[500px] overflow-y-auto">
-            <CardContent className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-semibold text-[#0C1708]">Consulting</h3>
-                <Link href="/consulting">
-                  <ArrowUpRight className="text-[#0C1708] hover:text-[#EAF6E5] w-5 h-5" />
-                </Link>
-              </div>
-              <ul className="list-disc list-inside space-y-2 text-sm">
-                <li>CUBE Consulting – President</li>
-                <li>Junior Enterprise USA Summit Host</li>
-                <li>CUBE Consulting – Project Manager</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          {/* Software */}
-          <Card className="bg-[#8DC89A] border-none max-h-[500px] overflow-y-auto">
-            <CardContent className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-semibold text-[#0C1708]">Software</h3>
-                <Link href="/software">
-                  <ArrowUpRight className="text-[#0C1708] hover:text-[#EAF6E5] w-5 h-5" />
-                </Link>
-              </div>
-              <ul className="list-disc list-inside space-y-2 text-sm">
-                <li>Haylon Technologies – Embedded Software</li>
-                <li>Nand2Tetris Capstone Project</li>
-                <li>SystemVerilog Automation Toolkit</li>
-                <li>Found It! @Illinois</li>
-              </ul>
-            </CardContent>
-          </Card>
+          {experiences.map((experience) => (
+            <motion.div
+              key={experience.title}
+              variants={popIn}
+              transition={{ type: "spring", stiffness: 240, damping: 21 }}
+              className="h-full"
+            >
+              <Card className="h-full border-none bg-[#8DC89A] py-0 shadow-lg shadow-[#0C1708]/10 transition-transform hover:-translate-y-1">
+                <CardContent className="flex h-full flex-col p-6">
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <h3 className="text-2xl font-bold text-[#0C1708]">{experience.title}</h3>
+                    <Link
+                      href={experience.href}
+                      aria-label={`View ${experience.title} experience`}
+                      className="group rounded-md p-2 transition hover:bg-[#0C1708]"
+                    >
+                      <ArrowUpRight className="h-5 w-5 text-[#0C1708] transition group-hover:text-[#EAF6E5]" />
+                    </Link>
+                  </div>
+                  <ul className="grid gap-3 text-sm leading-6">
+                    {experience.items.map((item) => (
+                      <li key={item} className="border-l-2 border-[#0C1708] pl-3">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </motion.section>
       </section>
     </main>
