@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink, FileText, PlayCircle } from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, Github, PlayCircle } from "lucide-react";
 import { getProject, projectData } from "@/lib/projects";
 import { ProjectDiagram } from "@/components/project-diagram";
 
@@ -172,6 +172,22 @@ export default async function ProjectPage({
               style={{ borderColor: `${palette.ink}33` }}
             />
           </section>
+        ) : null}
+
+        {project.repository ? (
+          <a
+            href={project.repository}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-between gap-4 rounded-lg p-6 font-bold shadow-lg transition hover:opacity-90"
+            style={{ backgroundColor: palette.ink, color: palette.background }}
+          >
+            <span className="flex items-center gap-3">
+              <Github className="h-6 w-6" />
+              View GitHub Repository
+            </span>
+            <ExternalLink className="h-5 w-5" />
+          </a>
         ) : null}
 
         {project.video ? (

@@ -16,6 +16,7 @@ export const projectData = [
     ],
     diagram: "/projects/ooo-risc-v-processor/ooo_diagram.png",
     pdf: "/projects/ooo-risc-v-processor/writeup.pdf",
+    repository: "https://github.com/AnishNagar05/Out-of-Order-Processor",
     stages: [
       {
         stage: "Fetch",
@@ -75,6 +76,7 @@ export const projectData = [
       "Builds intuition for how ISA decisions shape processor datapaths.",
     ],
     diagram: "/projects/in-order-processor/in_order_diagram.png",
+    repository: "https://github.com/AnishNagar05/In-Order-Processor",
   },
   {
     slug: "operating-system",
@@ -84,14 +86,13 @@ export const projectData = [
     summary:
       "A systems project exploring kernel ideas, scheduling, memory management, system calls, and hardware/software boundaries.",
     description:
-      "This project investigates the core responsibilities of an operating system and how software manages hardware resources. The work connects low-level machine behavior to higher-level abstractions such as processes, scheduling, virtual memory, system calls, and isolation.",
+      "Developed a Unix-inspired operating system kernel in C for RISC-V as part of a computer systems engineering project. Implemented core OS functionality including virtual memory with Sv39 paging, process abstraction, ELF program loading, system calls, preemptive multitasking, context switching between user and supervisor mode, and a custom KTFS filesystem with persistent read/write support. Built device drivers for UART, RTC, VIRTIO block devices, and ramdisk interfaces while integrating a unified I/O abstraction layer for files, devices, pipes, and listings.\n\nThe system supported multitasking user programs, interprocess communication through UNIX-style pipes, shell execution, and filesystem utilities such as ls, cat, wc, and rm. Additional work included implementing a configurable block cache, page fault handling with lazy allocation, process forking, synchronization primitives, and debugging support using GDB and QEMU. The final OS was capable of running interactive text-based games such as Trek, Rogue, and Zork entirely on the custom kernel environment.",
     highlights: [
       "Explores kernel structure and process-level abstractions.",
       "Connects memory management decisions to hardware support.",
       "Frames OS design as a bridge between architecture and application behavior.",
     ],
-    diagram: "/projects/operating-system/diagram.png",
-    pdf: "/projects/operating-system/writeup.pdf",
+    repository: "https://github.com/AnishNagar05/Operating-System-Project",
   },
   {
     slug: "fpga-game",
@@ -126,23 +127,6 @@ export const projectData = [
     ],
     diagram: "/projects/16-bit-mcu/16-bit-micro_diagram.png",
     pdf: "/projects/16-bit-mcu/16-bit-microprocessor.pdf",
-  },
-  {
-    slug: "nand2tetris",
-    title: "Nand2Tetris Project",
-    type: "Computer Systems",
-    difficulty: 2,
-    summary:
-      "A from-first-principles systems build moving from gates to an ALU, CPU, assembler, OS, and software layers.",
-    description:
-      "This project follows the construction of a computer system from primitive logic gates through hardware modules, machine language, an assembler, a virtual machine, a compiler, and operating system pieces. It is a full-stack view of how computation layers are built.",
-    highlights: [
-      "Builds hardware abstractions from basic logic gates.",
-      "Connects CPU design to assembly, VM behavior, and higher-level software.",
-      "Strengthens understanding of how hardware and software layers depend on each other.",
-    ],
-    diagram: "/projects/nand2tetris/diagram.png",
-    pdf: "/projects/nand2tetris/writeup.pdf",
   },
   {
     slug: "found-it-illinois",

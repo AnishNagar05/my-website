@@ -27,15 +27,15 @@ const popIn = {
 };
 
 const workExperience = [
-  {
-    company: "AMD",
-    role: "CPU Debug Intern",
-    dates: "September 2026 - December 2026",
-    logo: "/logos/amd_logo.svg",
-    bullets: [
-      "Incoming role focused on CPU debug, verification workflows, and low-level hardware problem solving for laptop processors.",
-    ],
-  },
+  // {
+  //   company: "AMD",
+  //   role: "CPU Debug Intern",
+  //   dates: "September 2026 - December 2026",
+  //   logo: "/logos/amd_logo.svg",
+  //   bullets: [
+  //     "Incoming role focused on CPU debug, verification workflows, and low-level hardware problem solving for laptop processors.",
+  //   ],
+  // },
   {
     company: "Raytheon",
     role: "FPGA Engineering Intern",
