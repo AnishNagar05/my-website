@@ -2,17 +2,18 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Briefcase,
   Calendar,
-  ChevronDown,
   Cpu,
   Gamepad2,
   Linkedin,
   MonitorCog,
   Users,
 } from "lucide-react";
+import { projectData } from "@/lib/projects";
 
 const palette = {
   background: "#EAF6E5",
@@ -32,7 +33,7 @@ const workExperience = [
     dates: "September 2026 - December 2026",
     logo: "/logos/amd_logo.svg",
     bullets: [
-      "Incoming role focused on CPU debug, validation workflows, and low-level hardware problem solving for laptop processors.",
+      "Incoming role focused on CPU debug, verification workflows, and low-level hardware problem solving for laptop processors.",
     ],
   },
   {
@@ -66,51 +67,6 @@ const workExperience = [
       "Developed a Battery Management System (BMS) by programming I2C/SMBus protocols in C/C++ on MCUs and fuel gauges, ensuring seamless integration with existing company circuitry and infrastructure.",
       "Engineered a PCB on KiCad to leverage diverse battery chemistries and utilize machine learning algorithms to accurately predict battery current draw, resulting in a 70% increase in battery life for UAVs.",
     ],
-  },
-];
-
-const projects = [
-  {
-    title: "Designing an Out-of-Order RISC-V Processor",
-    type: "Computer Architecture",
-    detail:
-      "A processor design project centered on scheduling, hazards, speculation, register renaming, and commit logic.",
-  },
-  {
-    title: "Designing an In-Order RISC-V Processor",
-    type: "Computer Architecture",
-    detail:
-      "A cleaner RISC-V processor path focused on pipeline stages, control logic, datapath design, stalls, and forwarding.",
-  },
-  {
-    title: "Designing an Operating System",
-    type: "Systems",
-    detail:
-      "A systems project exploring kernel ideas, scheduling, memory management, system calls, and hardware/software boundaries.",
-  },
-  {
-    title: "Designing a Game on an FPGA",
-    type: "FPGA / Graphics",
-    detail:
-      "A real-time FPGA game with VGA rendering, gameplay logic, peripheral communication, and hardware-controlled interaction.",
-  },
-  {
-    title: "Designing a 16-bit RISC Microprocessor",
-    type: "Digital Design",
-    detail:
-      "A custom microprocessor project covering instruction flow, ALU behavior, FSM control, and memory interaction.",
-  },
-  {
-    title: "Nand2Tetris Project",
-    type: "Computer Systems",
-    detail:
-      "A from-first-principles systems build moving from gates to an ALU, CPU, assembler, OS, and software layers.",
-  },
-  {
-    title: "Found IT @Illinois",
-    type: "Full Stack",
-    detail:
-      "A campus lost-and-found platform built with React, Node.js, and Firebase, recognized for UI/UX at HackIllinois.",
   },
 ];
 
@@ -206,7 +162,7 @@ export default function HomePage() {
               About Me
             </p>
             <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-              Hardware-minded engineer with a product lens.
+              Hardware-minded engineer
             </h2>
             <div className="mt-5 grid gap-4 text-base leading-7 sm:text-lg">
               <p>
@@ -284,45 +240,60 @@ export default function HomePage() {
         </section>
 
         <section id="projects" className="scroll-mt-8">
-          <SectionTitle eyebrow="Project Experience" title="Click a Project to Expand" />
+          <SectionTitle eyebrow="Project Experience" title="Click a Project to Open Details" />
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project) => (
-              <details
+            {projectData.map((project) => (
+              <Link
                 key={project.title}
-                className="group rounded-lg border p-5 shadow-sm"
+                href={`/projects/${project.slug}`}
+                className="group rounded-lg border p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                 style={{
                   backgroundColor: palette.accent,
                   borderColor: `${palette.ink}22`,
                   color: palette.ink,
                 }}
               >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
-                  <div>
-                    <div
-                      className="mb-4 flex h-11 w-11 items-center justify-center rounded-md"
-                      style={{ backgroundColor: palette.ink, color: palette.background }}
-                    >
-                      {project.type.includes("FPGA") ? (
-                        <Gamepad2 className="h-5 w-5" />
-                      ) : project.type.includes("Systems") ? (
-                        <MonitorCog className="h-5 w-5" />
-                      ) : (
-                        <Cpu className="h-5 w-5" />
-                      )}
-                    </div>
-                    <p className="text-sm font-bold uppercase tracking-[0.12em] opacity-65">
-                      {project.type}
-                    </p>
-                    <h3 className="mt-2 text-xl font-bold">{project.title}</h3>
+                <div>
+                  <div
+                    className="mb-4 flex h-11 w-11 items-center justify-center rounded-md"
+                    style={{ backgroundColor: palette.ink, color: palette.background }}
+                  >
+                    {project.type.includes("FPGA") ? (
+                      <Gamepad2 className="h-5 w-5" />
+                    ) : project.type.includes("Systems") ? (
+                      <MonitorCog className="h-5 w-5" />
+                    ) : (
+                      <Cpu className="h-5 w-5" />
+                    )}
                   </div>
-                  <ChevronDown className="mt-1 h-5 w-5 shrink-0 transition group-open:rotate-180" />
-                </summary>
+                  <p className="text-sm font-bold uppercase tracking-[0.12em] opacity-65">
+                    {project.type}
+                  </p>
+                  <h3 className="mt-2 text-xl font-bold">{project.title}</h3>
+                </div>
 
-                <p className="mt-5 border-t pt-5 leading-7" style={{ borderColor: `${palette.ink}33` }}>
-                  {project.detail}
-                </p>
-              </details>
+                <div className="mt-5 flex items-center justify-between gap-4 border-t pt-4" style={{ borderColor: `${palette.ink}33` }}>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.12em] opacity-65">
+                      Difficulty
+                    </p>
+                    <div className="mt-2 flex gap-1.5" aria-label={`Difficulty ${project.difficulty} out of 5`}>
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <span
+                          key={index}
+                          className="h-2.5 w-2.5 rounded-full border"
+                          style={{
+                            backgroundColor: index < project.difficulty ? palette.ink : "transparent",
+                            borderColor: palette.ink,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <span className="text-sm font-bold group-hover:underline">Open</span>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -341,11 +312,25 @@ export default function HomePage() {
               >
                 <Users className="h-6 w-6" />
               </div>
-              <h3 className="text-2xl font-bold">President, Consulting Organization</h3>
+              <h3 className="text-2xl font-bold">President, CUBE Consulting</h3>
+              <p className="mt-2 text-sm font-semibold opacity-70">
+                June 2024 - August 2025
+              </p>
             </div>
-            <p className="text-lg leading-7">
-              I led a consulting organization where student teams worked with companies across technical and business problems. This work strengthened how I think about client needs, team leadership, problem framing, and the connection between engineering decisions and company strategy.
-            </p>
+            <div className="grid gap-4">
+              <p className="text-lg leading-7">
+                I led a 70 + member consulting organization where student teams worked with companies across technical and business projects. This work strengthened how I think about client needs, team leadership, problem framing, and the connection between engineering decisions and company strategy.
+              </p>
+              <a
+                href="https://www.cubeconsulting.org/"
+                target="_blank"
+                rel="noreferrer"
+                className="w-fit rounded-md px-4 py-2 text-sm font-bold transition hover:opacity-85"
+                style={{ backgroundColor: palette.ink, color: palette.background }}
+              >
+                Visit CUBE Consulting
+              </a>
+            </div>
           </article>
         </section>
       </div>
