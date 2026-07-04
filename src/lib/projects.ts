@@ -62,6 +62,23 @@ export const projectData = [
     ],
   },
   {
+    slug: "micrograd",
+    title: "Micrograd",
+    type: "Machine Learning",
+    difficulty: 2,
+    summary:
+      "A miniature automatic differentiation engine and feedforward neural network built from scratch in Python.",
+    description:
+      "This project is my implementation of a miniature automatic differentiation engine and feedforward neural network, built entirely from scratch in Python while studying the fundamental mathematics behind modern deep learning. Rather than relying on frameworks such as PyTorch or TensorFlow, I implemented the underlying autograd engine responsible for constructing computation graphs, propagating gradients using reverse-mode automatic differentiation, and optimizing neural network parameters through gradient descent.\n\nAt the core of this project is a custom Value class that overloads arithmetic operators to dynamically build a directed acyclic computation graph during the forward pass. Each operation records its local derivative, and during backpropagation the chain rule is applied in reverse topological order to efficiently compute the gradient of the loss with respect to every parameter in the network. This implementation closely mirrors how automatic differentiation is performed internally by modern machine learning frameworks.\n\nBuilding on the autograd engine, I implemented neurons, fully connected layers, and multi-layer perceptrons capable of learning nonlinear functions through supervised learning. The network minimizes mean squared error by iteratively computing forward passes, backpropagating gradients, and updating weights with gradient descent. Developing every component from first principles provided a much deeper understanding of computation graphs, the chain rule, gradient flow, parameter optimization, and the mathematical foundations that enable neural networks to learn.\n\nWhile this implementation is intentionally lightweight and designed for education rather than performance, recreating these algorithms from scratch significantly strengthened my understanding of automatic differentiation and the core ideas that power modern AI frameworks such as PyTorch.",
+    highlights: [
+      "Implements reverse-mode automatic differentiation from first principles.",
+      "Uses a custom Value class to build computation graphs during the forward pass.",
+      "Builds neurons, layers, and multi-layer perceptrons for supervised learning.",
+      "Trains networks with mean squared error, backpropagation, and gradient descent.",
+    ],
+    repository: "https://github.com/AnishNagar05/micrograd",
+  },
+  {
     slug: "in-order-risc-v-processor",
     title: "Designing an In-Order RISC-V Processor",
     type: "Computer Architecture",

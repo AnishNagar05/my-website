@@ -42,7 +42,7 @@ const workExperience = [
     dates: "June 2026 - August 2026",
     logo: "/logos/rtx_logo.png",
     bullets: [
-      "FPGA engineering role focused on digital logic design, hardware implementation, synthesis, and verification.",
+      "Implemented partial reconfiguration logic design on Xilinx FPGAs for flight navigation processing in VHDL using Vivado, Questa, and Synplify. Wrote VHDL testbenches and python regression tests.",
     ],
   },
   {
@@ -126,6 +126,7 @@ export default function HomePage() {
                 src="/profile.jpeg"
                 alt="Profile picture of Anish Nagar"
                 fill
+                sizes="176px"
                 className="object-cover"
                 priority
               />
@@ -204,6 +205,7 @@ export default function HomePage() {
                         width={110}
                         height={44}
                         className="h-auto max-h-11 w-auto object-contain"
+                        style={{ width: "auto", height: "auto" }}
                       />
                     </div>
                   ) : (
